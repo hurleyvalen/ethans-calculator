@@ -16,7 +16,10 @@
     <div id="excel-grid"></div>
     <button onclick="calculateBOM()">Calculate Total Materials</button>
   
-    <div id="result"></div>
+    <div id="result">
+        <!-- @JIRO HERE -->
+         <!-- DITO PAPAKITA UNG RESULTS -->
+    </div>
   
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script>
@@ -32,8 +35,38 @@
         contextMenu: true,
         licenseKey: 'non-commercial-and-evaluation'
       });
-  
-      
+
+      const resultContainer = document.getElementById('result');
+
+      var materials = [];
+      var computedMaterials = [];
+      function calculateBOM(){
+        for(let i = 0; i < hot.getSourceDataArray().length;i++){
+            materials[i] = hot.getSourceDataArray()[i];
+        }
+        materials = materials.filter(row => row.join("") != "")
+        .map(row => row.filter((cell) => cell));
+        materials.sort();
+        
+        
+        for(let i = 0; i < materials.length; i++){
+            computedMaterials[i] = materials[i];
+            computedMaterials[i][2] = (materials[i][2] * materials[i][4]);
+
+        }
+        computedMaterials.forEach((i)=>{
+            i.pop();
+            i.pop();
+        })
+        console.log(computedMaterials);
+        
+        for(let i = 0; i < computedMaterials.length; i++){
+            resultContainer.innerHTML += computedMaterials[i];
+            resultContainer.innerHTML += "<br>";
+        }
+
+        
+      }
     </script>
   </body>
 </html>
