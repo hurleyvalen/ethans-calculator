@@ -6,13 +6,34 @@
     <title>Ethan's Calculator</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script defer src="/static/script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
 </head>
 <body>
-    <div class="calculator">
-        <h2>Ethan's Calculator</h2>
-        <div class="main-container">
-            hello world
-        </div>
-    </div>
-</body>
+
+    <h1>Bill of Materials Calculator</h1>
+  
+    <div id="excel-grid"></div>
+    <button onclick="calculateBOM()">Calculate Total Materials</button>
+  
+    <div id="result"></div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <script>
+      const container = document.getElementById('excel-grid');
+  
+      const hot = new Handsontable(container, {
+        data: [
+          ['', '', '', '', ''],
+        ],
+        colHeaders: ['Scope', 'Item', 'Quantity', 'UOM', 'PRICE'],
+        rowHeaders: true,
+        minSpareRows: 1,
+        contextMenu: true,
+        licenseKey: 'non-commercial-and-evaluation'
+      });
+  
+      
+    </script>
+  </body>
 </html>
